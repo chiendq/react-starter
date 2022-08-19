@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Language } from '@mui/icons-material';
+import { LandingPage } from './pages/landingPage/LandingPage';
+import { Login } from './pages/login/Login';
+import Test from './pages/test/Test';
+import MuiTest from './pages/test/MuiTest';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/test/provider" element={<Language />} />
+            <Route path="/test/mui" element={<MuiTest />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
