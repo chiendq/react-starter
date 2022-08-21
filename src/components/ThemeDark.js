@@ -1,20 +1,29 @@
-import {createTheme} from "@mui/material";
+import { createTheme } from '@mui/material';
 
-export const ThemeDark = createTheme({
-    gray: {
-        base: '#666666',
-        light: '#a2a2a2',
-        dark: '#27292a'
+const ThemeDark = createTheme({
+  gray: {
+    base: '#666666',
+    light: '#a2a2a2',
+    dark: '#27292a',
+  },
+  white: {
+    base: '#ffffff',
+  },
+  palette: {
+    background: {
+      default: '#1f2122',
     },
-    palette: {
-        background: {
-            default: "#1f2122"
-        },
-        text: {
-            primary: "#ffffff"
-        }
+    text: {
+      primary: '#ffffff',
+      fontFamily: 'Poppins',
     },
-    hover: {
-        pink: '#e75e8d'
-    }
+  },
+  hover: {
+    pink: '#e75e8d',
+  },
+  typography: {
+    fontFamily:`'Poppins', sans-serif`,
+  },
 });
+
+export default ThemeDark;

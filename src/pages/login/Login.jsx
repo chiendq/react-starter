@@ -3,7 +3,7 @@ import React from 'react';
 import { MdEmail } from 'react-icons/md';
 import { AiOutlineArrowRight, AiTwotoneLock } from 'react-icons/ai';
 
-export default function Login() {
+function Login() {
   return (
     <div className="login-bg">
       <div className="login-wrapper">
@@ -47,3 +47,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
