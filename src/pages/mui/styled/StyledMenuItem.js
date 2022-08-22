@@ -4,6 +4,7 @@ const StyledMenuItem = styled(Typography)(({ theme }) => ({
   padding: '13px 20px',
   color: theme.gray.base,
   fontWeight: 400,
+
   fontSize: '18px',
   letterSpacing: '.3px',
   textAlign: 'center',

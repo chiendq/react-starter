@@ -94,21 +94,17 @@ export default function Mui() {
     },
   ]
 
-  const styledLogo = {
-    width: '100%',
-    img: {
-      width: 300,
-      paddingRight: '80px',
-      borderRight: `1px solid ${ThemeDark.gray.dark}`,
-      marginRight: '65px',
-    },
-  };
-
   const StyledToolBar = styled(Toolbar)(() => ({
     width: '100%',
     height: 'inherit',
     '@media (min-width: 600px)': {
       padding: 0,
+    },
+    'img': {
+      width: 300,
+      paddingRight: '80px',
+      borderRight: `1px solid ${ThemeDark.gray.dark}`,
+      marginRight: '65px',
     },
   }));
 
@@ -118,6 +114,10 @@ export default function Mui() {
     height: '40px',
     width: '40px',
     margin: '0 8px 0 0',
+  }));
+
+  const StyledStack = styled(Stack)(() => ({
+    width: '100%',
   }));
 
   const StyledLeftToolBarStack = styled(Stack)(() => ({
@@ -132,7 +132,8 @@ export default function Mui() {
     alignItems: 'center',
     ":hover": {
       backgroundColor: `${ThemeDark.hover.pink}`,
-    }
+      color: `${ThemeDark.white.base}`,
+    },
   }));
 
   const CustomContainer = styled(Container)(() => ({
@@ -200,6 +201,15 @@ export default function Mui() {
     }
   }));
 
+  const ContentTitle = ({content, title}) => {
+    return (<StyledContentTitle>
+      <h4>
+        <em>{title}</em>
+        {` ${content}`}
+      </h4>
+    </StyledContentTitle>)
+  }
+
   const StyledContentTitle = styled('div')(() => ({
     'h4':{
       fontSize: '34px',
@@ -223,6 +233,10 @@ export default function Mui() {
     padding: '30px 15px',
     backgroundColor: '#27292a',
     borderRadius: 25,
+    'img':{
+      borderRadius: '25px',
+      marginBottom: '20px',
+    }
   }));
 
   const StyledStackGameInfo = styled(Stack)(()=>({
@@ -246,11 +260,11 @@ export default function Mui() {
   const StyledDownloadedButton = styled(StyledButton)(()=>({
     height: 50,
     backgroundColor: 'transparent',
-    color: '#666666',
+    color: ThemeDark.gray.base,
     border: 'solid 1px',
     '&:hover':{
       backgroundColor: 'transparent',
-      color: '#666666',
+      color: ThemeDark.gray.base,
       cursor: 'default'
     }
   }));
@@ -296,7 +310,7 @@ export default function Mui() {
   const StyledYourGameInfo = styled(Stack)(()=>({
     width: '100%',
     'span':{
-      color: '#666666'
+      color: ThemeDark.gray.base
     }
   }));
   
@@ -322,17 +336,12 @@ export default function Mui() {
     <StyledContainer>
       <ThemeProvider theme={ThemeDark}>
         <CssBaseline/>
-        <StyledAppBar
-          elevation={0}
-          position="static"
-        >
-          <StyledToolBar
-            sx={styledLogo}
-            variant="dense"
-          >
+        <StyledAppBar elevation={0} position="static">
+          <StyledToolBar variant="dense">
             <StyledLeftToolBarStack>
-              <img src="https://templatemo.com/templates/templatemo_579_cyborg_gaming/assets/images/logo.png"
-                   alt="logo"/>
+              <img
+                src="https://templatemo.com/templates/templatemo_579_cyborg_gaming/assets/images/logo.png"
+                alt="logo"/>
               <StyledOutlinedInput
                 placeholder="Type Something"
                 startAdornment={(
@@ -350,15 +359,7 @@ export default function Mui() {
               {pages.map((page) => (
                 <StyledMenuItem key={page} textAlign="center">{page}</StyledMenuItem>))}
               <StyledAvatarStack>
-                <StyledMenuItem
-                  sx={{
-                    padding: '0 16px',
-                    ":hover": {
-                      color: `${ThemeDark.white.base}`,
-                    },
-                  }}
-                  key="profile"
-                >Profile</StyledMenuItem>
+                <StyledMenuItem>Profile</StyledMenuItem>
                 <StyledAvatar
                   src="https://templatemo.com/templates/templatemo_579_cyborg_gaming/assets/images/profile-header.jpg"
                   alt="avatar"
@@ -398,26 +399,17 @@ export default function Mui() {
           </CustomContainer>
         </StyledBannerContainer>
         <StyledPopularContainer>
-          <StyledContentTitle>
-            <h4>
-              <em>Most Popular</em>
-              {" Right Now"}
-            </h4>
-          </StyledContentTitle>
+          <ContentTitle title="Most Popular" content=" Right Now"/>
           <StyledPopularGame cols={4} gap={24}>
             {popularGame.map((item) => (
               <StyledImageListItem key={item.image}>
                 <img
-                  style={{
-                    borderRadius: '25px',
-                    marginBottom: '20px',
-                  }}
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
                 />
                 <StyledStackGameInfo>
-                  <Stack sx={{width: '100%',}}>
+                  <StyledStack >
                     <StyledStackGameInfo direction="row">
                       <h4>{item.title}</h4>
                       <Stack direction="row">
@@ -427,14 +419,14 @@ export default function Mui() {
                     </StyledStackGameInfo>
                     <StyledStackGameInfo direction="row">
                       <span style={{
-                        color: '#666666'
+                        color: ThemeDark.gray.base
                       }}>{item.type}</span>
                       <Stack direction="row">
                         <DownloadIcon sx={{color:"#ec6090"}} fontSize={'small'} />
                         2.5M
                       </Stack>
                     </StyledStackGameInfo>
-                  </Stack>
+                  </StyledStack>
                 </StyledStackGameInfo>
 
               </StyledImageListItem>
@@ -445,12 +437,7 @@ export default function Mui() {
           </Stack>
         </StyledPopularContainer>
         <StyledYourGameContainer>
-          <StyledContentTitle>
-            <h4>
-              <em>Your Gaming</em>
-              {" Library"}
-            </h4>
-          </StyledContentTitle>
+          <ContentTitle title="Your Gaming" content="Library"/>
           {yourGaming.map((item) => (
             <StyledYourGameStack direction="row" key={item.title}>
               <StyledYourGameImg src={item.image} alt={item.title}/>
@@ -468,9 +455,7 @@ export default function Mui() {
           <StyledBottomCenterContainerButton variant="contained">View Your Library</StyledBottomCenterContainerButton>
         </StyledYourGameContainer>
       </StyledBodyContainer>
-      <Stack sx={{
-        alignItems: 'center',
-      }}>
+      <Stack sx={{alignItems: 'center',}}>
         <Typography>Copyright © 2036 Cyborg Gaming Company. All rights reserved.</Typography>
         <Typography>Design: TemplateMo</Typography>
       </Stack>
